@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TesteApiInMemory.Repositories;
 
 namespace TesteApiInMemory
 {
@@ -28,6 +29,7 @@ namespace TesteApiInMemory
         {
 
             services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase(databaseName: "apiTest"));
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
